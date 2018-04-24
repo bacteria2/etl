@@ -1,0 +1,31 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone:  http://peer1:8761/eureka/,http://peer2:8762/eureka/,http://peer3:8763/eureka/
+server:
+  port: 8764
+spring:
+  application:
+    name: kettle-service
+
+---
+spring:
+  profiles: dev
+kettle:
+  cluster:
+    username: cluster
+    password: cluster
+    master: 192.168.40.235:8081
+  work-directory: /kettle-work/
+
+---
+spring:
+  profiles: prod
+kettle:
+  cluster:
+    username: cluster
+    password: cluster
+    master: 192.168.40.235:8081
+  work-directory: /kettle-work
