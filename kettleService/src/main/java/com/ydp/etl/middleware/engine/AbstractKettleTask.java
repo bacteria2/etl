@@ -1,20 +1,15 @@
 package com.ydp.etl.middleware.engine;
 
+import org.dom4j.DocumentFactory;
+
 abstract public class AbstractKettleTask {
-    private String xmlBody;
-    private String name;
-    private String id;
-    private RunningProperties runningProperties;
+    protected String xmlBody;
+    protected String name;
+    protected String id;
+
+
 
     public AbstractKettleTask() {
-    }
-
-    public RunningProperties getRunningProperties() {
-        return runningProperties;
-    }
-
-    public void setRunningProperties(RunningProperties runningProperties) {
-        this.runningProperties = runningProperties;
     }
 
     public String getXmlBody() {
@@ -41,5 +36,7 @@ abstract public class AbstractKettleTask {
         this.id = id;
     }
 
-    abstract public  String getSubmitTask();
+
+
+
 }

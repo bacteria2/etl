@@ -21,7 +21,8 @@ public enum HTTPApi {
     PauseTrans("/kettle/pauseTrans/?name=%s", "GET"),
     StopTrans("/kettle/stopTrans/?xml=Y", "GET"),
     TransStatus("/kettle/transStatus/?xml=Y", "GET"),
-    RemoveTrans("/kettle/removeTrans/?xml=Y", "GET"),
+    RemoveTrans("/kettle/removeTrans/?xml=Y&name=%s", "GET"),
+    RemoveTransWithId("/kettle/removeTrans/?xml=Y&name=%s&id=%s","GET"),
     CleanupTrans("/kettle/cleanupTrans/?xml=Y", "GET"),
     ServerStatus("/kettle/status/?xml=Y", "GET"),
 
@@ -38,7 +39,8 @@ public enum HTTPApi {
     ExecuteJob("/kettle/executeJob/?xml=Y", "GET"),
     StartJob("/kettle/startJob/?xml=Y&name=%s&id=%s&from=0", "GET"),
     StopJob("/kettle/stopJob/?xml=Y&name=%s&id=%s&from=0", "GET"),
-    RemoveJob("/kettle/removeJob/?xml=Y&name=%s&id=%s", "GET"),
+    RemoveJob("/kettle/removeJob/?xml=Y&name=%s", "GET"),
+    RemoveJobWithId("/kettle/removeJob/?xml=Y&name=%s&id=%s","GET"),
     RegisterJob("/kettle/registerJob/?xml=Y", "POST"),
     JobStatus("/kettle/jobStatus/?xml=Y&name=%s&id=%s", "GET");
 

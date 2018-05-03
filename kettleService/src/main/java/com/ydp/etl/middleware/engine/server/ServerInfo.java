@@ -1,17 +1,20 @@
 package com.ydp.etl.middleware.engine.server;
 
+import java.util.List;
+import java.util.Map;
+
 public class ServerInfo {
 
     //master地址
     private String host;
     //从机地址
-    private String[] slaves;
+    private List<Map> slaves;
     //是否在运行任务
-    private boolean isRunning;
+    private String statusDesc;
     //job列表
-    private String[] jobList;
+    private List<Map> jobList;
     //转换列表
-    private String[] transList;
+    private List<Map> transList;
 
 
     public ServerInfo() {
@@ -26,35 +29,35 @@ public class ServerInfo {
         this.host = host;
     }
 
-    public String[] getSlaves() {
+    public List<Map> getSlaves() {
         return slaves;
     }
 
-    public void setSlaves(String[] slaves) {
+    public void setSlaves(List<Map> slaves) {
         this.slaves = slaves;
     }
 
-    public boolean isRunning() {
-        return isRunning;
+    public String getStatusDesc() {
+        return statusDesc;
     }
 
-    public void setRunning(boolean running) {
-        isRunning = running;
+    public void setStatusDesc(String statusDesc) {
+        this.statusDesc = statusDesc;
     }
 
-    public String[] getJobList() {
+    public List<Map> getJobList() {
         return jobList;
     }
 
-    public void setJobList(String[] jobList) {
+    public void setJobList(List<Map> jobList) {
         this.jobList = jobList;
     }
 
-    public String[] getTransList() {
+    public List<Map> getTransList() {
         return transList;
     }
 
-    public void setTransList(String[] transList) {
+    public void setTransList(List<Map> transList) {
         this.transList = transList;
     }
 }

@@ -60,6 +60,8 @@ public class ResponseHelper {
         return commonResponse;
     }
 
+
+
     /**
      * return response with data,if data is null,return no data message,or return data
      *
@@ -79,6 +81,14 @@ public class ResponseHelper {
                     .setMessage(Message.NO_RESULT_MESSAGE);
 
         }
+        return commonResponse;
+    }
+
+    public static CommonResponse generateServerErrorResponse(String msg) {
+        CommonResponse commonResponse = new CommonResponse();
+        commonResponse
+                .setCode(HttpStatus.SC_INTERNAL_SERVER_ERROR)
+                .setMessage(msg);
         return commonResponse;
     }
 

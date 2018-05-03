@@ -1,6 +1,4 @@
 eureka:
-  instance:
-    hostname: localhost
   client:
     serviceUrl:
       defaultZone:  http://peer1:8761/eureka/,http://peer2:8762/eureka/,http://peer3:8763/eureka/
@@ -9,6 +7,8 @@ server:
 spring:
   application:
     name: kettle-service
+  profiles:
+    active: dev
 
 ---
 spring:
@@ -17,8 +17,15 @@ kettle:
   cluster:
     username: cluster
     password: cluster
-    master: 192.168.40.235:8081
-  work-directory: /kettle-work/
+    host: 192.168.40.235
+    port: 8080
+    name: cluster
+    basePort: 40000
+    socketsBufferSize: 2000
+    socketsFlushInterval: 5000
+    sockets_compressed: true
+    slaveServersName: clusterMaster
+  repository-path: Z://
 
 ---
 spring:
@@ -27,5 +34,6 @@ kettle:
   cluster:
     username: cluster
     password: cluster
-    master: 192.168.40.235:8081
-  work-directory: /kettle-work
+    host: 192.168.40.235
+    port: 8080
+  repository-path: Z://
