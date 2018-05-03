@@ -16,8 +16,8 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
  * @decription : content
  */
 
-public class    HelloWorldTask extends QuartzJobBean  {
-    private Logger log=LoggerFactory.getLogger(HelloWorldTask.class);
+public class HelloWorldTask extends QuartzJobBean {
+    private Logger log = LoggerFactory.getLogger(HelloWorldTask.class);
 
     @Value("${spring.profiles.active}")
     private String profile;
@@ -27,8 +27,10 @@ public class    HelloWorldTask extends QuartzJobBean  {
 
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        Integer i = jobExecutionContext.getMergedJobDataMap().getIntegerFromString("test");
         System.out.println("hello world");
-        log.info("active profile is {}",profile);
-        log.info("test string {}",testString);
+        System.out.println("test number is "+i);
+        log.info("active profile is {}", profile);
+        log.info("test string {}", testString);
     }
 }

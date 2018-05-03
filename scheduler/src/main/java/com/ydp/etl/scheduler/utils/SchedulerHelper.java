@@ -1,9 +1,13 @@
 package com.ydp.etl.scheduler.utils;
 
+import com.google.common.base.Preconditions;
 import com.ydp.etl.scheduler.model.ScheduleJob;
 import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
+
+import java.util.Map;
 
 
 /**
@@ -63,6 +67,7 @@ public class SchedulerHelper {
             Class<? extends Job> jobClass = (Class<? extends Job>) Class.forName(scheduleJob.getClassName()).newInstance().getClass();
 
             JobDetail jobDetail = JobBuilder.newJob(jobClass)
+                    .setJobData(parametersMap(scheduleJob.getParameters()))
                     .withIdentity(scheduleJob.getJobName(), scheduleJob.getJobGroup())
                     .withDescription(scheduleJob.getDescription())
                     .build();
@@ -103,13 +108,16 @@ public class SchedulerHelper {
         try {
 
             TriggerKey triggerKey = getTriggerKey(scheduleJob);
+            ;
 
             CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression())
+
                     .withMisfireHandlingInstructionDoNothing();
 
             CronTrigger cronTrigger = getCronTrigger(scheduler, scheduleJob);
 
             cronTrigger = cronTrigger.getTriggerBuilder()
+                    .usingJobData(parametersMap(scheduleJob.getParameters()))
                     .withIdentity(triggerKey)
                     .withDescription(scheduleJob.getDescription())
                     .withSchedule(cronScheduleBuilder).build();
@@ -197,5 +205,32 @@ public class SchedulerHelper {
             logger.error("Delete schedule model failed");
             throw new ServiceException("Delete model failed", e);
         }
+    }
+
+    private static JobDataMap parametersMap(String parameters){
+        JobDataMap jobDataMap    =new JobDataMap();
+        if(StringUtils.isEmpty(parameters)){
+            logger.debug("parameter string is null,return empty dataMap");
+            return jobDataMap;
+        }
+
+
+
+        //替换换行符后trim
+        String rawParamString=parameters.replaceAll("\n","").trim();
+        String[] keyValuePairs=rawParamString.split("&");
+
+        for(String pair : keyValuePairs){
+            if(pair.length()>0&&pair.contains("=")){
+                String[] keyValue=pair.split("=");
+                if(keyValue.length!=2){
+                    continue;
+                }
+                String key=keyValue[0];
+               if(!StringUtils.isEmpty(key))
+                   jobDataMap.put(key.trim(),keyValue[1]);
+            }
+        }
+        return jobDataMap;
     }
 }

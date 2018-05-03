@@ -4,7 +4,7 @@
 
     <sql id="baseColumnSql">
         id, class_name, cron_expression, job_name, job_group, trigger_name, trigger_group, pause,
-        enable, description, create_time, last_update_time
+        enable, parameters,description, create_time, last_update_time
     </sql>
 
     <resultMap id="baseResultMap" type="com.ydp.etl.scheduler.model.ScheduleJob">
@@ -17,6 +17,7 @@
         <result column="trigger_group" property="triggerGroup" javaType="java.lang.String" jdbcType="VARCHAR"></result>
         <result column="pause" property="pause" javaType="java.lang.Boolean" jdbcType="BOOLEAN"></result>
         <result column="enable" property="enable" javaType="java.lang.Boolean" jdbcType="BOOLEAN"></result>
+        <result column="parameters" property="parameters" javaType="java.lang.String" jdbcType="VARCHAR"></result>
         <result column="description" property="description" javaType="java.lang.String" jdbcType="VARCHAR"></result>
         <result column="create_time" property="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP"></result>
         <result column="last_update_time" property="lastUpdateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"></result>
@@ -69,6 +70,9 @@
             <if test="enable != null ">
                 enable = #{enable},
             </if>
+           <if test="parameters != null">
+               parameters = #{parameters}
+           </if>
             <if test="description != null ">
                 description = #{description},
             </if>
@@ -109,6 +113,9 @@
             <if test="enable != null ">
                 enable,
             </if>
+            <if test="parameters != null">
+                parameters,
+            </if>
             <if test="description != null ">
                 description,
             </if>
@@ -137,6 +144,9 @@
             </if>
             <if test="enable != null ">
                 #{enable},
+            </if>
+            <if test="parameters != null">
+                #{parameters},
             </if>
             <if test="description != null ">
                 #{description},

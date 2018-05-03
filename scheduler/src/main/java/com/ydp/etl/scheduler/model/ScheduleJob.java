@@ -25,15 +25,25 @@ public class ScheduleJob implements Serializable {
 
     private String triggerGroup;
 
-    private Boolean pause;
+    private boolean pause;
 
-    private Boolean enable;
+    private boolean enable;
 
     private String description;
 
     private Date createTime;
 
     private Date lastUpdateTime;
+
+    private String parameters;
+
+    public String getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(String parameters) {
+        this.parameters = parameters;
+    }
 
     public static Long getSerialVersionUID() {
         return serialVersionUID;
@@ -127,9 +137,10 @@ public class ScheduleJob implements Serializable {
         this.createTime = createTime;
     }
 
-    public Date getLastUpdateTime() {
-        return lastUpdateTime;
+    public Date getLastUpdateTime(){
+        return this.lastUpdateTime;
     }
+
 
     public void setLastUpdateTime(Date lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;

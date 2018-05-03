@@ -178,6 +178,7 @@ CREATE TABLE schedule_job (
   pause            BOOLEAN   DEFAULT FALSE,
   enable           BOOLEAN   DEFAULT TRUE,
   description      VARCHAR(500),
+  paramters      VARCHAR(100),
   create_time      TIMESTAMP DEFAULT current_timestamp,
   last_update_time TIMESTAMP DEFAULT current_timestamp ON UPDATE current_timestamp,
   CONSTRAINT PRIMARY KEY pk_schedule_job_id (id)
@@ -185,6 +186,6 @@ CREATE TABLE schedule_job (
 CREATE INDEX i_schedule_job_id
   ON schedule_job (id);
 
-INSERT INTO quartz.schedule_job (id, class_name, cron_expression, job_name, job_group, trigger_name, trigger_group, pause, enable, description, create_time, last_update_time)
+INSERT INTO quartz.schedule_job (id, class_name, cron_expression, job_name, job_group, trigger_name, trigger_group, pause, enable, description,paramters, create_time, last_update_time)
 VALUES (1, 'cn.com.hellowood.scheduledjob.model.TestJob', '*/10 * * * * ?', 'testJob', 'TEST_GROUP', 'TEST_TRIGGER',
-           'TEST_GROUP', 0, 1, 'test Job for SpringBoot', '2018-02-12 14:14:03', '2018-02-12 15:23:24');
+           'TEST_GROUP', 0, 1, 'test Job for SpringBoot','test=1&a=2', '2018-02-12 14:14:03', '2018-02-12 15:23:24');
