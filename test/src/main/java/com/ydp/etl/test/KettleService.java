@@ -9,22 +9,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "kettle-service",fallback = KettleServiceFallBack.class)
 public interface KettleService {
 
-    @RequestMapping(value="/kettle/trans/submit")
+    @RequestMapping(value="/trans/submit")
     default String submitTrans(@RequestParam(value = "body") String xmlBody){
         return "default fallbackMessage";
     };
 
-    @RequestMapping(value="/kettle/trans/getStatus")
+    @RequestMapping(value="/trans/getStatus")
     default  String getStatusByTransId(@RequestParam(value = "id")  String id){
         return "default fallbackMessage";
     };
 
-    @RequestMapping(value="/kettle/job/submit")
+    @RequestMapping(value="/job/submit")
     default String submitJob(@RequestParam(value = "body")  String xmlBody){
         return "default fallbackMessage";
     };
 
-    @RequestMapping(value="/kettle/job/getStatus")
+    @RequestMapping(value="/job/getStatus")
     default String getStatusByJobId(@RequestParam(value = "id")   String id){
         return "default fallbackMessage";
     }

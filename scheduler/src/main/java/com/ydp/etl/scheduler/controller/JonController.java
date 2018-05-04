@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * @decription : content
  */
 @RestController
-@RequestMapping("/job")
+@RequestMapping("/task")
 public class JonController {
     @Autowired
     private JobService jobService;

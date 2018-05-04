@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/etl/job")
+@RequestMapping("/job")
 public class JobsController {
     private Logger logger = LoggerFactory.getLogger(JobsController.class);
 

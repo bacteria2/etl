@@ -186,6 +186,6 @@ CREATE TABLE schedule_job (
 CREATE INDEX i_schedule_job_id
   ON schedule_job (id);
 
-INSERT INTO quartz.schedule_job (id, class_name, cron_expression, job_name, job_group, trigger_name, trigger_group, pause, enable, description,paramters, create_time, last_update_time)
-VALUES (1, 'cn.com.hellowood.scheduledjob.model.TestJob', '*/10 * * * * ?', 'testJob', 'TEST_GROUP', 'TEST_TRIGGER',
+INSERT INTO schedule_job (id, class_name, cron_expression, job_name, job_group, trigger_name, trigger_group, pause, enable, description,parameters, create_time, last_update_time)
+VALUES (1, 'com.ydp.etl.scheduler.task.JobTask', '*/10 * * * * ?', 'testJob', 'TEST_GROUP', 'TEST_TRIGGER',
            'TEST_GROUP', 0, 1, 'test Job for SpringBoot','test=1&a=2', '2018-02-12 14:14:03', '2018-02-12 15:23:24');

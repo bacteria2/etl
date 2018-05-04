@@ -10,17 +10,27 @@ import org.springframework.boot.autoconfigure.quartz.SchedulerFactoryBeanCustomi
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.client.RestTemplate;
 
 import javax.sql.DataSource;
 
 @SpringBootApplication
 @DisallowConcurrentExecution
-
+@EnableDiscoveryClient
 public class SchedulerTaskRunner {
+
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate(){
+        return new RestTemplate();
+    }
+
 
     @Bean
     public PropertySourcesPlaceholderConfigurer factoryBean() {

@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/etl/trans")
+@RequestMapping("/trans")
 public class TransformationController {
     private Logger logger= LoggerFactory.getLogger(TransformationController.class);
 
