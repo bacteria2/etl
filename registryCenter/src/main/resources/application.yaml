@@ -2,6 +2,7 @@ spring:
   application:
     name: spring-cloud-eureka
 eureka:
+
   server:
     enable-self-preservation: false
 ---

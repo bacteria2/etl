@@ -13,6 +13,7 @@
         <module>gateway</module>
         <module>scheduler</module>
         <module>etl-common</module>
+        <module>config</module>
     </modules>
 
     <packaging>pom</packaging>

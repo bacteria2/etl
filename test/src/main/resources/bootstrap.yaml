@@ -6,7 +6,13 @@ server:
   port: 8760
 spring:
   application:
-     name: test-service
+    name: test-service
+  cloud:
+    config:
+      label: master
+      profile: dev
+      uri: http://localhost:8766/
+      fail-fast: false
 proxy:
   enable: true
   host: 192.168.40.236

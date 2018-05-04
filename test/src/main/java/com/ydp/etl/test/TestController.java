@@ -10,6 +10,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.message.BasicNameValuePair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -39,6 +40,9 @@ public class TestController {
     @Autowired
     RestService restService;
 
+    @Value("${test.string}")
+    private String test;
+
     @GetMapping("/test")
     public String testFeign(){
        return service.getStatusByJobId("t11233t");
@@ -67,5 +71,10 @@ public class TestController {
     @GetMapping("/test3")
     public String testHystrix(){
         return restService.getJob();
+    }
+
+    @GetMapping("/test5")
+    public String test5(){
+        return test;
     }
 }
